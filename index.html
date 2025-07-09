@@ -1,216 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&family=Righteous&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weather App</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&family=Righteous&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="css/all.min.css" />
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-
-<body data-bs-spy="scroll" data-bs-target="#navbar-example" data-offset="50">
- <div>
-   <!--     ================ navbar ================    -->
-   <header class="">
-    <div class="container p-5">
-      <nav class="navbar navbar-expand-lg text-white">
-        <div class="container-fluid">
-          <div class="logo d-flex">
-            <a class="navbar-brand" href="#"><img style="width: 60px; height: 40px" src="images/logo@2x.png"
-                alt="logo" /></a>
-            <div>
-              <a href="#" class="text-decoration-none text-white">
-                <h4 style="margin-bottom: 0">Weather</h4>
-              </a>
-              <a href="#" class="text-decoration-none text-white">
-                <p>tagline goes here</p>
-              </a>
-            </div>
-          </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active text-white" aria-current="page" id="home" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="#">New</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="#">Live Cameras</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="#">Photos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="#" id="contact">Contact</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </header>
-  <!--     ================ section ================    -->
-  <div class="body">
-    <main class="d-flex justify-content-center align-items-center">
-      <div class="container">
-        <form action="" class="position-relative">
-          <input type="text" name="inputloc" id="locInput" class="form-control" placeholder="Find your location....." />
-          <button class="btn btn-primary">Find</button>
-        </form>
-      </div>
-    </main>
-    <section>
-      <div class="container">
-        <div class="weather row g-0">
-          <div class="col-md-4 col-sm-12">
-            <div class="today-forcast text-white pb-5">
-              <div class="header d-flex justify-content-between align-items-center ps-3 pt-3 pe-3"
-                style="background-color: #2d303d">
-                <p id="day1">Wednesday</p>
-                <p id="date1">4 December</p>
+  <body data-bs-spy="scroll" data-bs-target="#navbar-example" data-offset="50">
+    <div>
+      <!--     ================ navbar ================    -->
+      <header class="">
+        <div class="container p-5">
+          <nav class="navbar navbar-expand-lg text-white">
+            <div class="container-fluid">
+              <div class="logo d-flex">
+                <a class="navbar-brand" href="#"
+                  ><img
+                    style="width: 60px; height: 40px"
+                    src="images/logo@2x.png"
+                    alt="logo"
+                /></a>
+                <div>
+                  <a href="#" class="text-decoration-none text-white">
+                    <h4 style="margin-bottom: 0">Weather</h4>
+                  </a>
+                  <a href="#" class="text-decoration-none text-white">
+                    <p>tagline goes here</p>
+                  </a>
+                </div>
               </div>
-              <div class="content ps-2 pb-2" style="background-color: #323544">
-                <p id="location1">Cairo</p>
-                <h2 class="display-1 fw-bolder" id="temp1">20°C</h2>
-                <img id="weatherIcon1" src="images/176.webp" alt="Weather" />
-                <p class="text-primary" id="weatherDesc1">
-                  Patchy rain nearby
-                </p>
-                <div class="d-flex justify-content-around">
-                  <div>
-                    <span><img src="images/icon-compass.png" alt="" />
-                      <span id="humidity1">20%</span></span>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a
+                      class="nav-link active text-white"
+                      aria-current="page"
+                      id="home"
+                      href="#"
+                      >Home</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="#">New</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="#">Live Cameras</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="#">Photos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="#" id="contact"
+                      >Contact</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <!--     ================ section ================    -->
+      <div class="body">
+        <main class="d-flex justify-content-center align-items-center py-4">
+          <div class="container">
+            <form id="searchForm" class="position-relative">
+              <input
+                type="text"
+                id="locInput"
+                class="form-control"
+                placeholder="Find your location..."
+              />
+              <button type="submit" class="btn btn-primary">Find</button>
+            </form>
+          </div>
+        </main>
+
+        <section>
+          <div class="container">
+            <div class="weather row g-0 align-items-stretch">
+              <div class="col-md-4 col-sm-12">
+                <div class="today-forcast text-white h-100 d-flex flex-column">
+                  <div
+                    class="header d-flex justify-content-between align-items-center ps-3 pt-3 pe-3"
+                    style="background-color: #2d303d"
+                  >
+                    <p id="day1" class="mb-0">Wednesday</p>
+                    <p id="date1" class="mb-0">4 December</p>
                   </div>
-                  <div>
-                    <span><img src="images/icon-umberella.png" alt="" />
-                      <span id="precip1">18km/h</span></span>
+                  <div
+                    class="content ps-3 pe-3 pb-3 flex-grow-1 d-flex flex-column justify-content-between"
+                    style="background-color: #323544"
+                  >
+                    <div>
+                      <p id="location1" class="pt-3"></p>
+                      <h2 class="display-5 fw-bolder" id="temp1">20°C</h2>
+                      <img
+                        id="weatherIcon1"
+                        src="images/176.webp"
+                        alt="Weather"
+                        style="width: 60px"
+                      />
+                    </div>
+                    <div class="d-flex justify-content-around pt-3"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <div class="forcast text-white h-100 d-flex flex-column">
+                  <div
+                    class="header text-center pt-3 pb-2"
+                    style="background-color: #222530"
+                  >
+                    <p id="day2" class="mb-0">Thursday</p>
+                  </div>
+                  <div
+                    class="content flex-grow-1 d-flex flex-column justify-content-center align-items-center p-4 text-center"
+                    style="background-color: #262936"
+                  >
+                    <img
+                      id="weatherIcon2"
+                      src="images/302.webp"
+                      alt="Weather"
+                      style="width: 60px"
+                    />
+                    <p id="temp2" class="mt-3 mb-1">21.7°C</p>
+                    <p class="text-primary mb-0" id="weatherDesc2">
+                      Moderate rain
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <div class="forcast text-white h-100 d-flex flex-column">
+                  <div
+                    class="header text-center pt-3 pb-2"
+                    style="background-color: #2d303d"
+                  >
+                    <p id="day3" class="mb-0">Friday</p>
+                  </div>
+                  <div
+                    class="content flex-grow-1 d-flex flex-column justify-content-center align-items-center p-4 text-center"
+                    style="background-color: #323544"
+                  >
+                    <img
+                      id="weatherIcon3"
+                      src="images/302.webp"
+                      alt="Weather"
+                      style="width: 60px"
+                    />
+                    <p id="temp3" class="mt-3 mb-1">21.7°C</p>
+                    <p class="text-primary mb-0" id="weatherDesc3">
+                      Moderate rain
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </section>
+      </div>
 
-          <div class="col-md-4 col-sm-12">
-            <div class="forcast text-white">
-              <div class="header ps-3 pt-3 pe-3" style="background-color: #222530">
-                <p class="text-center mb-0 pb-3" id="day2">Thursday</p>
-              </div>
-              <div class="content p-5 text-center" style="background-color: #262936">
-                <img id="weatherIcon2" src="images/302.webp" alt="Weather" />
-                <p id="temp2">21.7°C</p>
-                <p class="text-primary" id="weatherDesc2">Moderate rain</p>
+      <!-- contact -->
+      <div class="contact pt-2 d-none" style="background-color: #222530">
+        <div class="container">
+          <div
+            class="w-100 p-4 rounded-5 text-white"
+            style="background-color: #323544"
+          >
+            <a id="home" href="#" class="text-decoration-none text-white"
+              >Home <i class="fa-solid fa-arrow-right"></i> </a
+            >contact
+          </div>
+          <div class="row p-5">
+            <div class="col-md-6 col-sm-12 p-2">
+              <div class="left rounded-3 p-5" style="background-color: #323544">
+                <iframe
+                  src=""
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+                <div class="pt-3">
+                  <p style="color: #7c7d83">
+                    <i
+                      class="fa-solid fa-location-crosshairs"
+                      style="color: #009ad8"
+                    ></i>
+                    Company Name INC. 2803 Avenue Street, Los Angeles
+                  </p>
+                  <span class="me-2" style="color: #7c7d83"
+                    ><i class="fa-solid fa-phone" style="color: #009ad8"></i> +1
+                    800 314 235</span
+                  >
+                  <span style="color: #7c7d83"
+                    ><i class="fa-solid fa-message" style="color: #009ad8"></i>
+                    contact@companyname.com</span
+                  >
+                </div>
               </div>
             </div>
-          </div>
-
-          <div class="col-md-4 col-sm-12">
-            <div class="forcast text-white">
-              <div class="header ps-3 pt-3 pe-3" style="background-color: #2d303d">
-                <p class="text-center mb-0 pb-3" id="day3">Friday</p>
-              </div>
-              <div class="content p-5 text-center" style="background-color: #323544">
-                <img id="weatherIcon3" src="images/302.webp" alt="Weather" />
-                <p id="temp3">21.7°C</p>
-                <p class="text-primary" id="weatherDesc3">Moderate rain</p>
+            <div class="col-md-5 offset-sm-1 col-sm-12 p-2">
+              <div class="right">
+                <div class="content">
+                  <h3 class="text-white">Contact Us</h3>
+                  <p style="color: #7c7d83">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Commodi consectetur inventore ducimus, facilis, numquam id
+                    soluta omnis eius recusandae nesciunt vero repellat harum
+                    cum. Nisi facilis odit hic, ipsum sed!
+                  </p>
+                </div>
+                <div class="form">
+                  <div class="d-flex">
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="your name .."
+                      class="form-control rounded-5 mb-2"
+                    />
+                    <input
+                      type="email"
+                      name="name"
+                      placeholder="Address .."
+                      class="form-control rounded-5 mb-2"
+                    />
+                  </div>
+                  <div class="d-flex">
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="company name"
+                      class="form-control rounded-5 mb-2"
+                    />
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="website"
+                      class="form-control rounded-5 mb-2"
+                    />
+                  </div>
+                  <textarea
+                    name="message"
+                    style="resize: vertical; background-color: #1e202b"
+                    class="w-100 rounded-5 p-2"
+                    id=""
+                    placeholder="Message"
+                  ></textarea>
+                  <button class="btn btn-primary">Submit</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  </div>
 
-   <!-- contact -->
-   <div class="contact pt-2 d-none" style="background-color: #222530">
-    <div class="container">
-      <div class="w-100 p-4 rounded-5 text-white" style="background-color: #323544">
-        <a id="home" href="#" class="text-decoration-none text-white">Home <i class="fa-solid fa-arrow-right"></i>
-        </a>contact
-      </div>
-      <div class="row p-5">
-        <div class="col-md-6 col-sm-12 p-2">
-          <div class="left rounded-3  p-5" style="background-color:#323544 ;">
-            <iframe src=""
-             style=" border: 0" allowfullscreen="" loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <div class="pt-3">
-              <p style="color: #7c7d83;"><i class="fa-solid fa-location-crosshairs" style="color: #009ad8;"></i> Company
-                Name INC.
-                2803 Avenue Street, Los Angeles</p>
-              <span class="me-2" style="color: #7c7d83;"><i class="fa-solid fa-phone" style="color: #009ad8;"></i> +1
-                800 314 235</span>
-              <span style="color: #7c7d83;"><i class="fa-solid fa-message" style="color: #009ad8;"></i>
-                contact@companyname.com</span>
+      <!--     ============ footer =============== -->
+      <footer class="p-5">
+        <div class="container">
+          <div class="footer d-flex justify-content-between">
+            <form id="Subscribe" action="" class="position-relative w-75">
+              <input
+                type="text"
+                name="inputloc"
+                id="locInput"
+                class="form-control"
+                placeholder="Find your location....."
+              />
+              <button class="btn btn-primary">Subscribe</button>
+            </form>
+            <div class="icons">
+              <a href="#"
+                ><i
+                  class="fa-brands fa-facebook ms-1"
+                  style="color: #009ad8"
+                ></i
+              ></a>
+              <a href="#"
+                ><i class="fa-brands fa-twitter ms-1" style="color: #009ad8"></i
+              ></a>
+              <a href="#"
+                ><i
+                  class="fa-brands fa-google-plus-g ms-1"
+                  style="color: #009ad8"
+                ></i
+              ></a>
+              <a href="#"
+                ><i class="fa-brands fa-pinterest ms-1" style="color: #009ad8">
+                </i
+              ></a>
             </div>
           </div>
+          <p style="color: #7c7d83" class="pt-5">
+            Copyright 2014 Company name. Designed by Themezy. All rights
+            reserved
+          </p>
         </div>
-        <div class="col-md-5 offset-sm-1 col-sm-12 p-2">
-          <div class="right ">
-            <div class="content">
-              <h3 class="text-white">Contact Us</h3>
-              <p style="color: #7c7d83;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi consectetur inventore ducimus,
-                facilis, numquam id soluta omnis eius recusandae nesciunt vero repellat harum cum. Nisi facilis odit
-                hic, ipsum sed!</p>
-            </div>
-            <div class="form">
-              <div class="d-flex ">
-                <input type="text" name="name" placeholder="your name .." class="form-control rounded-5 mb-2" >
-                <input type="email" name="name" placeholder="Address .." class="form-control rounded-5 mb-2" >
-              </div>
-              <div class="d-flex ">
-                <input type="text" name="name" placeholder="company name" class="form-control rounded-5 mb-2" >
-                <input type="text" name="name" placeholder="website" class="form-control rounded-5 mb-2" >
-              </div>
-              <textarea name="message" style="resize: vertical;background-color:#1E202B;" class="w-100 rounded-5 p-2" id="" placeholder="Message"></textarea>
-              <button class="btn btn-primary "> Submit</button>
-            </div>
-  
-  
-          </div>
-        </div>
-      </div>
+      </footer>
     </div>
-  </div>
-  
-  <!--     ============ footer =============== -->
-  <footer class="p-5">
-    <div class="container">
-      <div class="footer d-flex justify-content-between">
-        <form id="Subscribe" action="" class="position-relative w-75">
-          <input type="text" name="inputloc" id="locInput" class="form-control" placeholder="Find your location....." />
-          <button class="btn btn-primary">Subscribe</button>
-        </form>
-        <div class="icons">
-          <a href="#"><i class="fa-brands fa-facebook ms-1" style="color: #009ad8"></i></a>
-          <a href="#"><i class="fa-brands fa-twitter ms-1" style="color: #009ad8"></i></a>
-          <a href="#"><i class="fa-brands fa-google-plus-g ms-1" style="color: #009ad8"></i></a>
-          <a href="#"><i class="fa-brands fa-pinterest ms-1" style="color: #009ad8">
-            </i></a>
-        </div>
-      </div>
-      <p style="color: #7c7d83" class="pt-5">
-        Copyright 2014 Company name. Designed by Themezy. All rights reserved
-      </p>
-    </div>
-  </footer>
- </div>
-
- 
-  <script src="js/bootstrap.bundle.js"></script>
-  <script src="js/script.js"></script>
-</body>
-
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/script.js"></script>
+  </body>
 </html>

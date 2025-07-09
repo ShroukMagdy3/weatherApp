@@ -1,68 +1,89 @@
-var searchInput = document.querySelector("#locInput");
 
-searchInput.addEventListener("input", function () {
-  function search() {
-    var apiKey = "688ea4f7a9ba4ec9b2a234047240612";
-    var query = searchInput.value;
+async function getWeather(input) {
+  let url;
 
-    fetch(
-      `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${query}&days=3`
-    )
-      .then(function (res) {
-        return res.json();
-      })
-      .then(function (data) {
-        
-        document.getElementById("day1").innerHTML = data.forecast.forecastday[0].date;
-        document.getElementById("date1").innerHTML = new Date(data.forecast.forecastday[0].date).toLocaleDateString();
-        document.getElementById("location1").innerHTML = data.location.name;
-        document.getElementById("temp1").innerHTML = data.forecast.forecastday[0].day.avgtemp_c + "°C";
-
-        document.getElementById("weatherIcon1").src = "http://" + data.current.condition.icon;
-        document.getElementById("weatherDesc1").innerHTML = data.current.condition.text;
-        document.getElementById("humidity1").innerHTML = data.current.humidity + "%";
-        document.getElementById("precip1").innerHTML = data.current.precip_mm + " mm"; 
-
-        document.getElementById("day2").innerHTML = data.forecast.forecastday[1].date;
-        document.getElementById("weatherIcon2").src = "http://" + data.forecast.forecastday[1].day.condition.icon;
-        document.getElementById("temp2").innerHTML = data.forecast.forecastday[1].day.avgtemp_c + "°C";
-
-        var wind2Value = data.forecast.forecastday[1].day.maxwind_kph || "N/A";
-        document.getElementById("wind2").innerHTML = wind2Value + " km/h";
-
-        var precip2Value = data.forecast.forecastday[1].day.totalprecip_mm || "N/A";
-        document.getElementById("precip2").innerHTML = precip2Value + " mm";
-
-        document.getElementById("day3").innerHTML = data.forecast.forecastday[2].date;
-        document.getElementById("weatherIcon3").src = "http://" + data.forecast.forecastday[2].day.condition.icon;
-        document.getElementById("temp3").innerHTML = data.forecast.forecastday[2].day.avgtemp_c + "°C";
-
-        var wind3Value = data.forecast.forecastday[2].day.maxwind_kph || "N/A";
-        document.getElementById("wind3").innerHTML = wind3Value + " km/h";
-
-        var precip3Value = data.forecast.forecastday[2].day.totalprecip_mm || "N/A";
-        document.getElementById("precip3").innerHTML = precip3Value + " mm";
-
-        document.getElementById("weatherDesc2").innerHTML = data.forecast.forecastday[1].day.condition.text;
-        document.getElementById("weatherDesc3").innerHTML = data.forecast.forecastday[2].day.condition.text;
-      })
-      
+  if (typeof input === "string") {
+    // city name
+    url = `https://api.weatherapi.com/v1/forecast.json?key=688ea4f7a9ba4ec9b2a234047240612&q=${input}&days=3`;
+  } else if (typeof input === "object") {
+    // coordinates { lat, lon }
+    url = `https://api.weatherapi.com/v1/forecast.json?key=688ea4f7a9ba4ec9b2a234047240612&q=${input.lat},${input.lon}&days=3`;
   }
-  
-  search();
-});
 
+  const res = await fetch(url);
+  const data = await res.json();
+  return data;
+}
 
+function displayToday(data) {
+  const todayDate = new Date(data.location.localtime);
+  day1.innerText = todayDate.toLocaleDateString("en-US", { weekday: "long" });
+  date1.innerText = todayDate.toLocaleDateString("en-US", { day: "numeric", month: "long" });
 
-document.querySelector("#contact").addEventListener("click" , function(){
-    document.querySelector(".contact").classList.replace("d-none" , "d-block")
-    document.querySelector(".body").classList.add("d-none")
-})
+  location1.innerText = data.location.name;
+  temp1.innerText = `${data.current.temp_c}°C`;
+  weatherIcon1.src = "https:" + data.current.condition.icon;
+}
 
-document.querySelector("#home").addEventListener("click" , function(){
-    document.querySelector(".contact").classList.remove( "d-block")
-    document.querySelector(".contact").classList.add("d-none")
+function displayNextDays(data) {
+  const forecast = data.forecast.forecastday;
 
-    document.querySelector(".body").classList.remove("d-none")
-    document.querySelector(".body").classList.add("d-block")
-})
+  const date2 = new Date(forecast[1].date);
+  day2.innerText = date2.toLocaleDateString("en-US", { weekday: "long" });
+  temp2.innerText = `${forecast[1].day.avgtemp_c}°C`;
+  weatherDesc2.innerText = forecast[1].day.condition.text;
+  weatherIcon2.src = "https:" + forecast[1].day.condition.icon;
+
+  const date3 = new Date(forecast[2].date);
+  day3.innerText = date3.toLocaleDateString("en-US", { weekday: "long" });
+  temp3.innerText = `${forecast[2].day.avgtemp_c}°C`;
+  weatherDesc3.innerText = forecast[2].day.condition.text;
+  weatherIcon3.src = "https:" + forecast[2].day.condition.icon;
+}
+
+async function startApp(locationInput = "Cairo") {
+  try {
+    const data = await getWeather(locationInput);
+    displayToday(data);
+    displayNextDays(data);
+  } catch (err) {
+    alert("❌ Couldn't load weather data.");
+    console.error(err);
+  }
+}
+
+function getUserLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const coords = {
+          lat: position.coords.latitude,
+          lon: position.coords.longitude,
+        };
+        startApp(coords);
+      },
+      (error) => {
+        console.warn("Geolocation error:", error.message);
+        startApp("Cairo"); // fallback
+      }
+    );
+  } else {
+    alert("Geolocation not supported. Showing Cairo.");
+    startApp("Cairo");
+  }
+}
+
+window.onload = function () {
+  const locInput = document.getElementById("locInput");
+  const searchForm = document.getElementById("searchForm");
+
+  searchForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const city = locInput.value.trim();
+    if (city) {
+      startApp(city);
+    }
+  });
+
+  getUserLocation();
+};
